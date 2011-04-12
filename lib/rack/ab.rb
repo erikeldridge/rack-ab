@@ -1,4 +1,5 @@
 require 'rack'
+require 'digest/sha1'
 
 module Rack
   
@@ -37,9 +38,6 @@ module Rack
       # Name of cookie for storing bucket name
       @cookie_name = options[:cookie_name] || 'rack_ab'
       
-      # Collection of bucket names to pick randomly from
-      @bucket_names = options[:bucket_names] || ['a', 'b']
-      
       # Params to pass into Rack::Response::set_cookie
       # http://rack.rubyforge.org/doc/classes/Rack/Response.src/M000179.html
       @cookie_params = options[:cookie_params] || {}
@@ -53,8 +51,9 @@ module Rack
       # If user hasn't been assigned a bucket
       if req.cookies[@cookie_name].nil?
         
-        bucket_name = @bucket_names[rand(@bucket_names.length)]
-        
+        # TODO: determine uuid algorithm
+        bucket_name = Digest::SHA1.hexdigest Time.now.to_s
+      
         # Add bucket name to env so app can split traffic internally
         env["rack.ab.bucket_name"] = bucket_name
         

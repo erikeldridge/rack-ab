@@ -17,4 +17,5 @@ context "Rack::AB" do
     response = Rack::MockRequest.new(app).get('/', 'HTTP_COOKIE' => '')
     response.headers['Set-Cookie'].should =~ /rack_ab=[a-zA-Z0-9]{32}/
   end  
+  
 end
