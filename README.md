@@ -31,7 +31,7 @@ In development, we can force a bucket by setting a cookie named _rack_ab_ to the
 
 Configure like this
 
-        use Rack::AB, :buckets => [{'control' => 10}, {'new_feature' => 10}]
-        # ...
+    use Rack::AB, :buckets => [{'control' => 10}, {'new_feature' => 10}]
+    # ...
 
 Any and all feedback welcome.
