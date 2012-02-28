@@ -59,6 +59,7 @@ module Rack
           base_percentage += percentage
           if user_id % 100 < base_percentage
             env["rack.ab.bucket_name"] = name.to_s
+            # Log bucket impression
             break
           end
         end

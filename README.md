@@ -1,6 +1,8 @@
-# Rack:AB
+# Rack::AB
 
 Default settings assign users by id to one of two equally sized buckets, "a" and "b", and pass the bucket name to the app via the env object.
+
+**Note:** This code contains no logging. We would need to log bucket impressions and subsequent actions to compare performance between buckets.
 
 ## Basic usage
 
@@ -15,8 +17,9 @@ Default settings assign users by id to one of two equally sized buckets, "a" and
     end
     # ...
     [200, {}, body]
+1. Call app
 
-In development, force a bucket by setting a cookie named _rack_ab_ to the bucket name.
+In development, we can force a bucket by setting a cookie named _rack_ab_ to the bucket name.
 
 ## Configuration
 
