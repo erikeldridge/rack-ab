@@ -8,15 +8,17 @@ Default settings assign users by id to one of two equally sized buckets, "a" and
 
 1. Set the user id in a cookie called _user_id_
 1. Add Rack::AB to your code
-    use Rack::AB
-    # ...
-    if 'a' == env['rack.ab.bucket_name']
-      body = 'content for bucket a'
-    else
-      body = 'content for bucket b'
-    end
-    # ...
-    [200, {}, body]
+
+        use Rack::AB
+        # ...
+        if 'a' == env['rack.ab.bucket_name']
+          body = 'content for bucket a'
+        else
+          body = 'content for bucket b'
+        end
+        # ...
+        [200, {}, body]
+
 1. Call app
 
 In development, we can force a bucket by setting a cookie named _rack_ab_ to the bucket name.
@@ -29,7 +31,7 @@ In development, we can force a bucket by setting a cookie named _rack_ab_ to the
 
 Configure like this
 
-    use Rack::AB, :buckets => [{'control' => 10}, {'new_feature' => 10}]
-    # ...
+        use Rack::AB, :buckets => [{'control' => 10}, {'new_feature' => 10}]
+        # ...
 
 Any and all feedback welcome.
